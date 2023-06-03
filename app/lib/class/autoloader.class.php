@@ -1,4 +1,5 @@
 <?php
+
 class Autoloader
 {
 	public static function Register()
@@ -14,13 +15,14 @@ class Autoloader
 		if (class_exists($class_name)) {
 			return false;
 		}
+		$pObjectFilePath='';
 		if (substr($class_name, 0, 4) == 'cls_') {
 			$class_name = str_replace('cls_', '', $class_name);
 		}
 		$class = Autoloader::underscore($class_name);
 		if (file_exists(APPROOT . "lib/class/{$class}.class.php")) {
 			$pObjectFilePath = APPROOT . "lib/class/{$class}.class.php";
-		}
+		} 
 		if ((file_exists($pObjectFilePath) === false) || (is_readable($pObjectFilePath) === false)) {
 			die(json_encode([
 				'STATUS'    => 'CLASS_NOT_FOUND',

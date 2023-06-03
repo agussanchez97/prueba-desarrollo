@@ -51,6 +51,7 @@ if (!defined("GLOBAL_VARS_REWRITED")) {
     if (!empty($_SERVER)) {
         $GPC["PHP_SELF"] = $_SERVER["PHP_SELF"];
         $GPC["PURE_PHP_SELF"] = basename($_SERVER["PHP_SELF"]);
+        
         $GPC["QUERY_STRING"] = $_SERVER["QUERY_STRING"];
         $GPC["HTTP_USER_AGENT"] = $_SERVER["HTTP_USER_AGENT"];
         $GPC["HTTP_ACCEPT_ENCODING"] = $_SERVER["HTTP_ACCEPT_ENCODING"];

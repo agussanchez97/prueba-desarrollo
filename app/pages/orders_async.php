@@ -2,11 +2,7 @@
 
 require_once '../lib/core.lib.php';
 
-if ($GPC['type'] == 'list-orders') { 
-    
-    $orders = Orders::getInstance()->getTime($GPC)
-
-?>
+if ($GPC['type'] == 'list-orders') { ?>
     <form class="mb-3" class="filter-form" action="orders_async.php" data-target=".filter-results">
         <input type="hidden" name="type" value="filter-orders">
 
@@ -44,18 +40,14 @@ if ($GPC['type'] == 'list-orders') {
         </div>
         <div class="row mb-3 justify-content-between">
             <div class="col-2">
-                <button type="button" class="btn btn-success btn-submit">Buscar</button>
-                <button type="clear" class="btn btn-secondary btn-clear">Limpiar</button>
+                <button type="submit" class="btn btn-success btn-submit">Buscar</button>
+                <button type="reset" class="btn btn-secondary btn-clear">Limpiar</button>
             </div>
 
             <div class="col-2 d-flex justify-content-end">
-                <button type="button" 
-                        class="btn btn-primary btn-load-async" 
-                        data-action="orders_async.php" 
-                        data-type="record-orders" 
-                        data-target="main">
-                    Agregar
-                </button>
+            <button type="button" class="btn btn-primary btn-load-async" data-action="orders_async.php" data-type="record-orders" data-target="main">
+                Agregar
+            </button>
             </div>
         </div>
     </form>
@@ -66,7 +58,6 @@ if ($GPC['type'] == 'list-orders') {
 
 if ($GPC['type'] == 'filter-orders') {
     $arrOrders = Orders::getInstance()->getOrders($GPC);
-    $arrOrdersDemo = Orders::getInstance()->getOrdersAll($GPC)
     ?>
     <table class="table table-striped table-border">
         <thead>

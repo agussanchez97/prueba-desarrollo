@@ -17,5 +17,7 @@ require_once APPROOT . "lib/common/general_functions.php";
 require_once APPROOT . "lib/class/autoloader.class.php";
 require_once APPROOT . "lib/class/dbtools.class.php";
 
+
+
 Autoloader::Register();
 session_start();
