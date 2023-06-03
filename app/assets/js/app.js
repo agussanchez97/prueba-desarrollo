@@ -33,6 +33,7 @@ $(function () {
         }
 
         asyncLoad(data.action, data.params, $(data.target));
+        
     });
 
     $('body').on('click', '.btn-form-async', function (e) {
@@ -54,7 +55,7 @@ $(function () {
     });
 });
 
-const asyncLoad = (action, data, $resContainer) => {
+var asyncLoad = (action, data, $resContainer) => {
     $.ajax({
         type: 'POST',
         url: action,
@@ -68,4 +69,7 @@ const asyncLoad = (action, data, $resContainer) => {
     }).catch(function (xhr, status, error) {
         console.error(xhr, status, error);
     });
+
+    
 };
+

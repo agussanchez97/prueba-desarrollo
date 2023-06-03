@@ -31,6 +31,7 @@ CREATE TABLE `orders`  (
   `codigo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `fecha` date NULL DEFAULT NULL,
   `hora` time NULL DEFAULT NULL,
+  `estado` varchar(10) NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp,
   `modified_a` timestamp NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
