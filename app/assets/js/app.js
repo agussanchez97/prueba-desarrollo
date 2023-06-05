@@ -1,3 +1,4 @@
+
 $(function () {
     $('body').on('click', '.btn-submit', function (e) {
         e.preventDefault();
@@ -20,7 +21,8 @@ $(function () {
         $form.find('.btn-submit').trigger('click');
     });
 
-    $('body').on('click', '.btn-load-async', function () {
+    $('body').on('click', '.btn-load-async', function (e) {
+        e.preventDefault();
         const $btn = $(this);
         const data = $btn.data() || {};
 
@@ -56,11 +58,13 @@ $(function () {
 });
 
 var asyncLoad = (action, data, $resContainer) => {
+    console.log("ENTREEEEEEEEE");
     $.ajax({
         type: 'POST',
         url: action,
-        dataType: 'HTML',
+        dataType: 'html',
         data: data,
+    
     }).then(function (response) {
         if (response) {
             $resContainer.html(response).show();
@@ -72,4 +76,5 @@ var asyncLoad = (action, data, $resContainer) => {
 
     
 };
+
 
