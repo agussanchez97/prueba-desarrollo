@@ -215,56 +215,55 @@ if(isset($_POST['submit'])){
 if ($GPC['type'] == 'list-orders' or $GPC['type'] == 'filter-orders' ) {
     $arrOrders = Orders::getInstance()->getOrders($GPC);
     ?>
-    <table class='table table-striped table-border display' style='width:100%; text-align: center; border: 1px solid #ededed;'>
-        <thead >
-            <tr >
-                <th >N°</th>
-                <th>Origen</th>
-                <th>Destino</th>
-                <th>Salida</th>
-                <th>Retorno</th>
-                <th>Total</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <table id="orders-table" class="table table-striped table-border display" style="width:100%; text-align: center; border: 1px solid #ededed;">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Salida</th>
+            <th>Retorno</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (empty($arrOrders)) : ?>
+            <tr>
+                <td class="text-center" colspan="9">No hay registros</td>
             </tr>
-        </thead>
-
-        <tbody >
-            <?php if (empty($arrOrders)) : ?>
+        <?php else : ?>
+            <?php foreach ($arrOrders as $order) : ?>
                 <tr>
-                    <td class='text-center' colspan='9'>No hay registros</td>
+                    <td><?= $order['id'] ?></td>
+                    <td><?= $order['origen'] ?></td>
+                    <td><?= $order['destino'] ?></td>
+                    <td><?= $order['salida'] ?></td>
+                    <td><?= $order['retorno'] ?></td>
+                    <td><?= $order['total'] ?></td>
+                    <td><?= $order['fecha'] ?></td>
+                    <td><?= $order['hora'] ?></td>
+                    <td><?= $order['estado'] ?></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-load-async" data-action="orders_async.php" data-type="record-orders" data-params="<?= toObject(['id' => $order['id']]) ?>" data-target=".filter-results">Editar</button>
+                    </td>
                 </tr>
-            <?php else : ?>
-                <?php foreach ($arrOrders as $order) : ?>
-                    <tr >
-                        <td ><?= $order['id'] ?></td>
-                        
-                        <td><?= $order['origen'] ?></td>
-                        <td><?= $order['destino'] ?></td>
-                        <td><?= $order['salida'] ?></td>
-                        <td><?= $order['retorno'] ?></td>
-                        <td><?= $order['total'] ?></td>
-                        <td><?= $order['fecha'] ?></td>
-                        <td><?= $order['hora'] ?></td>
-                        <td><?= $order['estado'] ?></td>
-                        
-                        <td>
-                            <button type='button' 
-                                    class='btn btn-primary btn-load-async' 
-                                    data-action='orders_async.php' 
-                                    data-type='record-orders' 
-                                    data-params='<?php echo toObject(['id' => $order['id']]); ?>'
-                                    data-target='.filter-results'>
-                                    Editar
-                            </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
+</table>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#orders-table').DataTable();
+    });
+</script>
+
+
 <?php }
 
 
