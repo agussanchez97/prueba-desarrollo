@@ -215,6 +215,7 @@ if(isset($_POST['submit'])){
 if ($GPC['type'] == 'list-orders' or $GPC['type'] == 'filter-orders' ) {
     $arrOrders = Orders::getInstance()->getOrders($GPC);
     ?>
+    <!-- Paginacióon con la biblioteca Data Tables de Java Script -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <table id="orders-table" class="table table-striped table-border display" style="width:100%; text-align: center; border: 1px solid #ededed;">
     <thead>
